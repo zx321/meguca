@@ -438,7 +438,7 @@ function set_highlighted_post(num) {
 	$('article#' + num).addClass('highlight');
 }
 
-var samePage = new RegExp('^(?:' + THREAD + ')?#(\\d+)$');
+// TODO:0.5: Convert to in-model history.pushState() function
 $DOC.on('click', 'a', function (event) {
 	var target = $(this);
 	var href = target.attr('href');
@@ -454,7 +454,7 @@ $DOC.on('click', 'a', function (event) {
 			});
 		}
 		else if (THREAD) {
-			q = href.match(samePage);
+			q = href.match(new RegExp('^(?:' + THREAD + ')?#(\\d+)$'));
 			if (q)
 				set_highlighted_post(q[1]);
 		}
@@ -508,33 +508,3 @@ dispatcher[COLLECTION_ADD] = function (msg, op) {
 		target.add(msg[1], {merge: true});
 };
 
-(function () {
-	var m = window.location.hash.match(/^#q?(\d+)$/);
-	if (m)
-		set_highlighted_post(m[1]);
-
-	$('section').each(function () {
-		var s = $(this);
-		syncs[s.attr('id')] = parseInt(s.attr('data-sync'));
-
-		/* Insert image omission count (kinda dumb) */
-		if (!THREAD) {
-			var img = parseInt(s.attr('data-imgs')) -
-					s.find('img').length;
-			if (img > 0) {
-				var stat = s.find('.omit');
-				var o = stat.text().match(/(\d*)/)[0];
-				stat.text(abbrev_msg(parseInt(o), img));
-			}
-		}
-	});
-
-	$('del').attr('onclick', 'void(0)');
-
-	// Android browsers have no easy way to return to the top, so link it
-	var android = /Android/.test(navigator.userAgent);
-	if (android) {
-		var t = $.parseHTML(action_link_html('#', 'Top'))[0];
-		$('#bottom').css('min-width', 'inherit').after('&nbsp;', t);
-	}
-})();

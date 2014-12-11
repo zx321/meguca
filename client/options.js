@@ -1,3 +1,5 @@
+// TODO-0.5 Rebuild on board change for options containing $BOARD
+// TODO-0.6 Create Board model. Make Options listen to it
 var optSpecs = [];
 var nashi = {opts: []}, inputMinSize = 300, fullWidthExpansion = false;
 var shortcutKeys = {};

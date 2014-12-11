@@ -4,8 +4,7 @@ var Mine = new Kioku('mine', 2);
 Mine.bake_cookie = function () { return false; };
 $.cookie('mine', null); // TEMP
 
-(function () {
-
+// TODO:0.5
 var mine = Mine.read_all();
 
 function extract_post_model(el) {
@@ -95,8 +94,6 @@ function scan_threads_for_extraction() {
 	if (THREAD)
 		CurThread = Threads.get(THREAD);
 }
-
+// TODO:0.5
 scan_threads_for_extraction();
 Mine.purge_expired_soon();
-
-})();

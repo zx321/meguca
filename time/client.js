@@ -29,6 +29,7 @@ var is_skewed = (function(){
 	return readable_time(d.getTime()) != el.innerHTML;
 })();
 
+// TODO:0.5: Run after post extracion
 if (is_skewed) {
 	if (!oneeSama.rTime)
 		adjust_all_times();
