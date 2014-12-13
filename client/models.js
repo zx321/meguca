@@ -35,9 +35,12 @@ function renderRelativeTime(){
 	if (oneeSama.rTime){
 		var $time = this.$el.find('time').first();
 		var t = date_from_time_el($time[0]).getTime();
-		setInterval(function(){
+		var i = setInterval(function(){
 			$time.html(oneeSama.relative_time(t, new Date().getTime()));
 		}, 60000);
+		Backbone.once('unloadThreads', function(){
+			clearInterval(i);
+		});
 	}
 }
 
@@ -55,6 +58,7 @@ var Section = Backbone.View.extend({
 		this.listenTo(this.model.get('replies'), {
 			remove: this.removePost,
 		});
+		this.listenTo(Backbone, 'unloadThreads', this.remove);
 	},
 
 	renderHide: function (model, hide) {
@@ -109,6 +113,7 @@ var Article = Backbone.View.extend({
 			'removeSelf': this.remove,
 			'add': renderRelativeTime,
 		});
+		this.listenTo(Backbone, 'unloadThreads', this.remove);
 	},
 
 	render: function () {
