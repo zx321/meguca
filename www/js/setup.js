@@ -1,7 +1,7 @@
 var BOARD, THREAD, BUMP, PAGE, mediaURL, options, themeVersion;
 // NOTE: options gets turned into a backbone model later
 
-(function () {
+function loadPageVars(){
 	var p = location.pathname;
 	BOARD = p.match(/^\/(.+?)\//)[1];
 	var t = p.match(/\/(\d+)$/);
@@ -9,6 +9,10 @@ var BOARD, THREAD, BUMP, PAGE, mediaURL, options, themeVersion;
 	BUMP = /\/$/.test(p);
 	t = p.match(/\/page(\d+)$/);
 	PAGE = t ? parseInt(t[1], 10) : -1;
+}
+
+(function () {
+	loadPageVars();
 
 	if (!mediaURL) {
 		var sc = document.getElementsByTagName('script');
