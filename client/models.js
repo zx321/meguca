@@ -137,7 +137,7 @@ var Article = Backbone.View.extend({
 		// TODO: Sync up DOM gracefully instead of clobbering
 		$list.find('a').remove();
 		backlinks.forEach(function (num) {
-			var $a = $('<a/>', {href: '#'+num, text: '>>'+num});
+			var $a = $('<a/>', {href: '#'+num, text: '>>'+num, 'class': 'histRef'});
 			$list.append(' ', $a);
 		});
 		return this;

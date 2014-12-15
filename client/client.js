@@ -438,26 +438,31 @@ function set_highlighted_post(num) {
 	$('article#' + num).addClass('highlight');
 }
 
-// TODO:0.5: Convert to in-model history.pushState() function
-$DOC.on('click', 'a', function (event) {
+// Post quoting links
+$DOC.on('click', '.quoteRef', function (event) {
 	var target = $(this);
 	var href = target.attr('href');
-	if (href) {
-		var q = href.match(/#q(\d+)/);
-		if (q) {
-			event.preventDefault();
-			var id = parseInt(q[1], 10);
-			set_highlighted_post(id);
-			with_dom(function () {
-				open_post_box(id);
-				postForm.add_ref(id);
-			});
-		}
-		else if (THREAD) {
-			q = href.match(new RegExp('^(?:' + THREAD + ')?#(\\d+)$'));
-			if (q)
-				set_highlighted_post(q[1]);
-		}
+	var q = href.match(/#q(\d+)/);
+	if (q) {
+		event.preventDefault();
+		var id = parseInt(q[1], 10);
+		set_highlighted_post(id);
+		with_dom(function () {
+			open_post_box(id);
+			postForm.add_ref(id);
+		});
+	}
+});
+
+// Other post & cross-thread/board links
+$DOC.on('click', '.histRef', function (event) {
+	var target = $(this);
+	var href = target.attr('href');
+	if (THREAD && href.charAt(0) == '#')
+		set_highlighted_post(href.slice(1));
+	else {
+		event.preventDefault();
+		new Shota(href);
 	}
 });
 

@@ -201,7 +201,7 @@ function make_navigation_html() {
 			return;
 		if (i > 0)
 			bits.push(' / ');
-		bits.push('<a href="../'+board+'/">'+board+'</a>');
+		bits.push('<a class="histRef" href="../'+board+'/">'+board+'</a>');
 	});
 	bits.push(']</b>');
 	return {NAVTOP: bits.join('')};

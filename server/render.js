@@ -190,7 +190,7 @@ function make_thread_meta(board, num, abbrev) {
 exports.make_pagination_html = function (info) {
 	var bits = ['<nav class="pagination">'], cur = info.cur_page;
 	if (cur >= 0)
-		bits.push('<a href=".">live</a>');
+		bits.push('<a class="histRef" href=".">live</a>');
 	else
 		bits.push('<strong>live</strong>');
 	var start = 0, end = info.pages, step = 1;
@@ -200,7 +200,7 @@ exports.make_pagination_html = function (info) {
 	}
 	for (var i = start; i != end; i += step) {
 		if (i != cur)
-			bits.push('<a href="page' + i + '">' + i + '</a>');
+			bits.push('<a class="histRef" href="page' + i + '">' + i + '</a>');
 		else
 			bits.push('<strong>' + i + '</strong>');
 	}

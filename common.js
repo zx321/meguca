@@ -719,18 +719,19 @@ OS.post_ref = function (num, op, desc_html) {
 		ref += ' \u2192';
 	else if (num == op && this.op == op)
 		ref += ' (OP)';
-	return safe('<a href="'+this.post_url(num, op, false)+'">'+ref+'</a>');
+	return safe('<a class="histRef" href="'+this.post_url(num, op, false)+'">'+ref+'</a>');
 };
 
 OS.post_nav = function (post) {
 	var n = post.num, o = post.op;
-	return safe('<nav><a href="' + this.post_url(n, o, false) +
-			'">No.</a><a href="' + this.post_url(n, o, true) +
+	return safe('<nav><a class="histRef" href="' + this.post_url(n, o, false) +
+			'">No.</a><a class="quoteRef" href="' + this.post_url(n, o, true) +
 			'">' + n + '</a></nav>');
 };
 
-function action_link_html(href, name) {
-	return '<span class="act"><a href="'+href+'">'+name+'</a></span>';
+function action_link_html(href, name, histRef) {
+	return '<span class="act "><a '+ (histRef?'class="histRef" ':'')+
+			'href="'+href+'">'+name+'</a></span>';
 }
 exports.action_link_html = action_link_html;
 
@@ -740,11 +741,11 @@ exports.reasonable_last_n = function (n) {
 
 OS.last_n_html = function (num) {
 	return action_link_html(num + '?last=' + this.lastN,
-			'Last&nbsp;' + this.lastN);
+			'Last&nbsp;' + this.lastN, true);
 };
 
 OS.expansion_links_html = function (num, omit) {
-	var html = ' &nbsp; ' + action_link_html(num, 'Expand');
+	var html = ' &nbsp; ' + action_link_html(num, 'Expand', true);
 	if (omit > this.lastN)
 		html += ' ' + this.last_n_html(num);
 	return html;
