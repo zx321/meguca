@@ -30,6 +30,7 @@ exports.CLIENT_DEPS = [
 	'client/amusement.js',
 	'client/embed.js',
 	'client/gravitas.js',
+	'client/history.js',
 	'curfew/client.js',
 	'report/client.js',
 	'time/client.js',

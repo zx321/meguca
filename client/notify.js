@@ -1,8 +1,7 @@
-(function () {
-
 // Should be part of a greater thread model
-// TODO:0.5
 var Unread = new Backbone.Model({unreadCount: 0});
+
+(function () {
 
 var normalTitle = document.title;
 

@@ -47,7 +47,7 @@ connSM.act('load + start -> conn', function () {
 	connect();
 });
 
-function connect() {
+window.connect = function() {
 	if (socket) {
 		socket.onclose = null;
 		socket.onmessage = null;

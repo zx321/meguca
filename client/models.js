@@ -21,7 +21,6 @@ var ThreadCollection = Backbone.Collection.extend({
 	},
 });
 
-// TODO:0.5
 var Threads = new ThreadCollection();
 var UnknownThread = new Thread();
 

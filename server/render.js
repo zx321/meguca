@@ -217,8 +217,7 @@ exports.write_page_end = function (out, ident, returnLink, min) {
 	if (returnLink)
 		out.write(returnHTML);
 	var last = RES.indexTmpl.length - 1;
-	if (!min)
-		out.write(RES.indexTmpl[last]);
+	out.write(RES.indexTmpl[last]);
 	if (ident && !min) {
 		if (caps.can_administrate(ident))
 			out.write('<script src="../admin.js"></script>\n');

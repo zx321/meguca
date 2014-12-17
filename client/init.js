@@ -38,8 +38,8 @@ if ($.cookie('linkify') == 'true')
 
 // Extra functions that need to be rerun, when switching threads with HTML5 history
 // TODO:0.5: Remove as much as possible or inbuild into models
-threadReload();
-function threadReload(){
+mumboJumbo();
+function mumboJumbo(){
 	var m = window.location.hash.match(/^#q?(\d+)$/);
 	if (m)
 		set_highlighted_post(m[1]);
