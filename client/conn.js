@@ -1,3 +1,5 @@
+var dontResync;
+
 (function () {
 
 var socket, attempts, attemptTimer;
@@ -9,7 +11,9 @@ window.send = function (msg) {
 	if (socket.readyState != SockJS.OPEN) {
 		if (console)
 			console.warn("Attempting to send while socket closed");
-		return;
+		return setTimeout(function(){
+			send(msg);
+		}, 1000);
 	}
 
 	msg = JSON.stringify(msg);
@@ -62,7 +66,7 @@ window.connect = function() {
 	socket.onmessage = on_message;
 	if (DEBUG)
 		window.socket = socket;
-}
+};
 
 window.new_socket = function (attempt) {
 	var protocols = ['xdr-streaming', 'xhr-streaming', 'iframe-eventsource', 'iframe-htmlfile', 'xdr-polling', 'xhr-polling', 'iframe-xhr-polling', 'jsonp-polling'];
@@ -73,11 +77,15 @@ window.new_socket = function (attempt) {
 	});
 };
 
-connSM.act('conn, reconn + open -> syncing', function () {
+window.resync = function () {
+	if (dontResync)
+		return console.log('Not resyncing');
 	sync_status('Syncing');
 	CONN_ID = random_id();
 	send([SYNCHRONIZE, CONN_ID, BOARD, syncs, BUMP, document.cookie]);
-});
+};
+
+connSM.act('conn, reconn + open -> syncing', resync);
 
 connSM.act('syncing + sync -> synced', function () {
 	sync_status('Synced');

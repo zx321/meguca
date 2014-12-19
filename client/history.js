@@ -6,7 +6,8 @@ var Shota = function(href){
 	var pat = new RegExp('^\\d|^\\.$|^page|^\\.\\.\/'+BOARD+'\/');
 	if (!pat.test(href))
 		return location.href = href;
-	//disconnect();
+	dontResync = true;
+	send([HADENA]);
 	// TODO: Curenntly caching to sessionStorage would require a lot of looping
 	// and selectors, which is suboptimal. Should revisit this after all sections,
 	// .pagination, #bottom, etc. is contained in a single threads element
@@ -94,6 +95,7 @@ Shota.prototype.putOnSkirt = function(){
 	Unread = new Backbone.Model({unreadCount: 0});
 	scan_threads_for_extraction();
 	mumboJumbo();
-	//connect();
+	dontResync = false;
+	resync();
 };
 

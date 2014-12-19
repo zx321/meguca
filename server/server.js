@@ -160,6 +160,12 @@ function synchronize(msg, client) {
 	return true;
 }
 
+// Drop redis subs without terminating websocket connection. Used for pushState() clent-side
+dispatcher[common.HADENA] = function(msg, client){
+	client.db.disconnect();
+	return true;
+};
+
 function setup_imager_relay(cb) {
 	var onegai = new imager.Onegai;
 	onegai.relay_client_messages();
