@@ -648,7 +648,7 @@ web.resource(/^\/outbound\/(g|iqdb|sn)\/(\d+\.jpg)$/,
 		var service = 'https://www.google.com/searchbyimage?image_url=';
 	else
 		var service = 'http://saucenao.com/search.php?db=999&url=';
-	
+
 	var dest = service + encodeURIComponent(thumb);
 	cb(null, 303.1, dest);
 });

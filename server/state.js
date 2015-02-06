@@ -101,7 +101,7 @@ function reload_scripts(cb) {
 		HOT.CLIENT_JS = js[0];
 		HOT.VENDOR_JS = js[1];
 		// Read moderator js file
-		fs.readFile(path.join('state', js[2]), 'UTF-8', function (err, modSrc) {
+		fs.readFile(path.join('www/js/mod', js[2]), 'UTF-8', function (err, modSrc) {
 			if (err)
 				return cb(err);
 			RES.modJs = modSrc;
@@ -152,7 +152,7 @@ function expand_templates(res) {
 	// Format info banner
 	if (templateVars.BANNERINFO)
 		templateVars.BANNERINFO = '&nbsp;&nbsp;&nbsp;[' + templateVars.BANNERINFO + ']';
-	
+
 	function tmpl(data) {
 		var expanded = _.template(data)(templateVars);
 		return {tmpl: expanded.split(/\$[A-Z]+/),

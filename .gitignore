@@ -17,12 +17,13 @@ imager/build
 tripcode/.build
 tripcode/build
 upkeep/credentials.json
-www/css/*-v*.css
 www/illya.mp4
 www/illya.webm
 www/archive
-www/js/client*.js
-www/js/vendor*.js
+www/js/client
+www/js/vendor
+www/js/mod
+www/js/maps
 www/src
 www/thumb
 www/mid

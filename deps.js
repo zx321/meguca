@@ -10,6 +10,7 @@ exports.SERVER_DEPS = [
 	'db.js',
 	'deps.js',
 	'etc.js',
+	'gulpfile.js',
 	'hooks.js',
 	'tail.js',
 	'curfew/server.js',

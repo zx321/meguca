@@ -43,7 +43,7 @@ $NAV
 $THREADS
 $NAV
 <script src="{{MEDIA_URL}}js/sockjs-0.3.4.min.js"></script>
-<script src="{{MEDIA_URL}}js/{{VENDOR_JS}}"></script>
+<script src="{{MEDIA_URL}}js/vendor/{{VENDOR_JS}}"></script>
 <script>
 	var config = {{CLIENT_CONFIG}};
 	var imagerConfig = {{CLIENT_IMAGER}};
@@ -57,4 +57,4 @@ $NAV
 	});
 	options = new Backbone.Model(options);
 </script>
-<script src="{{MEDIA_URL}}js/{{CLIENT_JS}}"></script>
+<script src="{{MEDIA_URL}}js/client/{{CLIENT_JS}}"></script>
