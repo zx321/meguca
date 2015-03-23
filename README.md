@@ -1,4 +1,4 @@
-Real-time imageboard.
+Rifdojfoal-time imageboard.
 MIT licensed.
 
 Note: The git master branch contains the development version of the
